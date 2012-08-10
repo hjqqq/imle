@@ -51,12 +51,17 @@
         return;
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-    glBufferData(m_vertexBuffer, m_spriteCount * sizeof(SVertex), m_vertices, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_spriteCount * 4 * sizeof(SVertex), m_vertices, GL_STATIC_DRAW);
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
-    glBufferData(m_indexBuffer, m_spriteCount * 6 * sizeof(GLubyte), m_indices, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_spriteCount * 6 * sizeof(GLubyte), m_indices, GL_STATIC_DRAW);
+    
+    glViewport(0, 0, 200, 200);
     
     [m_shader begin];
+    
+    m_shader.PositionSlot = glGetAttribLocation(m_shader.Handle, "Position");
+    m_shader.ColorSlot = glGetAttribLocation(m_shader.Handle, "Color");
     
     glVertexAttribPointer(m_shader.PositionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), 0);
     glVertexAttribPointer(m_shader.ColorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid *)(sizeof(sizeof(float) * 3)));
@@ -84,6 +89,8 @@
     m_indices[m_spriteCount + 5] = 4 * m_spriteCount + 0;
     
     m_spriteCount++;
+    
+    
 }
 
 @end

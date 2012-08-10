@@ -44,6 +44,7 @@
     
     // Initialize the game
     m_game = [[Game alloc] init];
+    m_gameLoaded = NO;
 }
 
 - (void)viewDidUnload
@@ -79,6 +80,12 @@
     if (!m_game)
         return;
     
+    if (!m_gameLoaded)
+    {
+        [m_game load];
+        m_gameLoaded = YES;
+    }
+    
     // Update the game
     [m_game updateFrame:self.timeSinceLastUpdate];
 }
@@ -90,6 +97,7 @@
     
     // Render the frame
     [m_game renderFrame:self.timeSinceLastDraw];
+    
 }
 
 @end

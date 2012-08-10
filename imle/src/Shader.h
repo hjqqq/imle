@@ -24,6 +24,7 @@
 @property (nonatomic, assign) GLuint ColorSlot;
 @property (nonatomic, assign) GLuint NormalSlot;
 @property (nonatomic, assign) GLuint TextureSlot;
+@property (nonatomic, assign) GLuint Handle;
 
 
 - (id) initWithVS:(NSString *)vs FS:(NSString *)fs;

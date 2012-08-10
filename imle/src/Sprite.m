@@ -45,7 +45,37 @@
     
     // Update the vertex positions
     // We do this here instead of using a ModelView matrix in order to facilitate sprite batching
+    m_vertices[0].position[0] = m_position.x + m_frame.size.width / 2;
+    m_vertices[0].position[1] = m_position.y - m_frame.size.height / 2;
+    m_vertices[0].position[2] = 1;
+    m_vertices[0].color[0] = 1;
+    m_vertices[0].color[1] = 1;
+    m_vertices[0].color[2] = 1;
+    m_vertices[0].color[3] = 1;
     
+    m_vertices[1].position[0] = m_position.x + m_frame.size.width / 2;
+    m_vertices[1].position[1] = m_position.y + m_frame.size.height / 2;
+    m_vertices[1].position[2] = 1;
+    m_vertices[1].color[0] = 1;
+    m_vertices[1].color[1] = 1;
+    m_vertices[1].color[2] = 1;
+    m_vertices[1].color[3] = 1;
+    
+    m_vertices[2].position[0] = m_position.x - m_frame.size.width / 2;
+    m_vertices[2].position[1] = m_position.y + m_frame.size.height / 2;
+    m_vertices[2].position[2] = 1;
+    m_vertices[2].color[0] = 1;
+    m_vertices[2].color[1] = 1;
+    m_vertices[2].color[2] = 1;
+    m_vertices[2].color[3] = 1;
+    
+    m_vertices[3].position[0] = m_position.x - m_frame.size.width / 2;
+    m_vertices[3].position[1] = m_position.y - m_frame.size.height / 2;
+    m_vertices[3].position[2] = 1;
+    m_vertices[3].color[0] = 1;
+    m_vertices[3].color[1] = 1;
+    m_vertices[3].color[2] = 1;
+    m_vertices[3].color[3] = 1;
 }
 
 - (void) renderFrame

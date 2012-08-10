@@ -15,6 +15,7 @@
 @private
     EAGLContext *m_context;
     Game *m_game;
+    bool m_gameLoaded;
 }
 
 @property (strong, nonatomic) EAGLContext *context;

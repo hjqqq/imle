@@ -14,10 +14,11 @@
 @synthesize ColorSlot = m_colorSlot;
 @synthesize NormalSlot = m_normalSlot;
 @synthesize TextureSlot = m_textureSlot;
+@synthesize Handle = m_handle;
 
 - (void) dealloc
 {
-    [self unbind];
+    [self end];
     
     glDeleteShader(m_vertShader);
     glDeleteShader(m_fragShader);
@@ -79,6 +80,8 @@
         m_colorSlot = glGetAttribLocation(m_handle, "Color");
         m_normalSlot = glGetAttribLocation(m_handle, "Normal");
         m_textureSlot = glGetAttribLocation(m_handle, "Texture");
+        
+
     }
     return self;
 }
@@ -86,6 +89,11 @@
 - (void) begin
 {
     glUseProgram(m_handle);
+    
+    glEnableVertexAttribArray(m_positionSlot);
+    glEnableVertexAttribArray(m_colorSlot);
+    glEnableVertexAttribArray(m_normalSlot);
+    glEnableVertexAttribArray(m_textureSlot);
 }
 
 - (void) end

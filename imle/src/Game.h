@@ -14,7 +14,7 @@
     
 }
 
-- (id) init;
+- (void) load;
 - (void) updateFrame:(NSTimeInterval)frameTime;
 - (void) renderFrame:(NSTimeInterval)frameTime;
 
