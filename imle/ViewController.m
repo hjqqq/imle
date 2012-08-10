@@ -39,6 +39,9 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
+    // Set the target frame rate
+    self.preferredFramesPerSecond = 60;
+    
     // Initialize the game
     m_game = [[Game alloc] init];
 }

@@ -61,7 +61,7 @@
     glVertexAttribPointer(m_shader.PositionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), 0);
     glVertexAttribPointer(m_shader.ColorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid *)(sizeof(sizeof(float) * 3)));
     
-    glDrawElements(GL_TRIANGLES, sizeof(m_indices) / sizeof(m_indices[0]), GL_UNSIGNED_BYTE, 0);
+    glDrawElements(GL_TRIANGLES, m_spriteCount * 6, GL_UNSIGNED_BYTE, 0);
     
     [m_shader unbind];
 }
@@ -76,13 +76,14 @@
     m_vertices[m_spriteCount + 2] = sprite.Vertices[2];
     m_vertices[m_spriteCount + 3] = sprite.Vertices[3];
     
-    m_indices[m_spriteCount + 0] = m_spriteCount + 0;
-    m_indices[m_spriteCount + 1] = m_spriteCount + 1;
-    m_indices[m_spriteCount + 2] = m_spriteCount + 2;
-    m_indices[m_spriteCount + 3] = m_spriteCount + 2;
-    m_indices[m_spriteCount + 4] = m_spriteCount + 3;
-    m_indices[m_spriteCount + 5] = m_spriteCount + 0;
+    m_indices[m_spriteCount + 0] = 4 * m_spriteCount + 0;
+    m_indices[m_spriteCount + 1] = 4 * m_spriteCount + 1;
+    m_indices[m_spriteCount + 2] = 4 * m_spriteCount + 2;
+    m_indices[m_spriteCount + 3] = 4 * m_spriteCount + 2;
+    m_indices[m_spriteCount + 4] = 4 * m_spriteCount + 3;
+    m_indices[m_spriteCount + 5] = 4 * m_spriteCount + 0;
     
+    m_spriteCount++;
 }
 
 @end
