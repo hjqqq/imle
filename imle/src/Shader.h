@@ -18,12 +18,14 @@
     GLuint m_colorSlot;
     GLuint m_normalSlot;
     GLuint m_textureSlot;
+    GLuint m_projectionSlot;
 }
 
 @property (nonatomic, assign) GLuint PositionSlot;
 @property (nonatomic, assign) GLuint ColorSlot;
 @property (nonatomic, assign) GLuint NormalSlot;
 @property (nonatomic, assign) GLuint TextureSlot;
+@property (nonatomic, assign) GLuint ProjectionSlot;
 @property (nonatomic, assign) GLuint Handle;
 
 

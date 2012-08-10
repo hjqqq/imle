@@ -50,24 +50,34 @@
     if (!m_began)
         return;
     
+    // Bind the buffer and push data to the GPU
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, m_spriteCount * 4 * sizeof(SVertex), m_vertices, GL_STATIC_DRAW);
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_spriteCount * 6 * sizeof(GLubyte), m_indices, GL_STATIC_DRAW);
     
-    glViewport(0, 0, 200, 200);
+    // Configure the viewport
+    glViewport(0, 0, 768, 1024);
     
+    // Enable the shader
     [m_shader begin];
     
+    // Set the projection matrix
+    m_shader.ProjectionSlot = glGetUniformLocation(m_shader.Handle, "Projection");
+    GLKMatrix4 projection = GLKMatrix4MakeOrtho(0, 768, 0, 1024, -100, 100);
+    glUniformMatrix4fv(m_shader.ProjectionSlot, 1, 0, projection.m);
+    
+    // Set the attribute positions
     m_shader.PositionSlot = glGetAttribLocation(m_shader.Handle, "Position");
     m_shader.ColorSlot = glGetAttribLocation(m_shader.Handle, "Color");
-    
     glVertexAttribPointer(m_shader.PositionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), 0);
     glVertexAttribPointer(m_shader.ColorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid *)(sizeof(sizeof(float) * 3)));
     
+    // Send the draw call to the GPU
     glDrawElements(GL_TRIANGLES, m_spriteCount * 6, GL_UNSIGNED_BYTE, 0);
     
+    // Disable the shader
     [m_shader end];
 }
 
@@ -75,6 +85,9 @@
 {
     if (!m_began)
         return;
+    
+    // We don't draw anything here, instead we add this sprite's vertices
+    // to the current batch which will get drawn with the call the Spritebatch::end
     
     m_vertices[m_spriteCount + 0] = sprite.Vertices[0];
     m_vertices[m_spriteCount + 1] = sprite.Vertices[1];
@@ -90,7 +103,7 @@
     
     m_spriteCount++;
     
-    
+    //NSLog(@"%f, %f", sprite.Vertices[3].position[0], sprite.Vertices[3].position[1]);
 }
 
 @end

@@ -14,6 +14,7 @@
 @synthesize ColorSlot = m_colorSlot;
 @synthesize NormalSlot = m_normalSlot;
 @synthesize TextureSlot = m_textureSlot;
+@synthesize ProjectionSlot = m_projectionSlot;
 @synthesize Handle = m_handle;
 
 - (void) dealloc
@@ -80,7 +81,7 @@
         m_colorSlot = glGetAttribLocation(m_handle, "Color");
         m_normalSlot = glGetAttribLocation(m_handle, "Normal");
         m_textureSlot = glGetAttribLocation(m_handle, "Texture");
-        
+        m_projectionSlot = glGetUniformLocation(m_handle, "Projection");
 
     }
     return self;
