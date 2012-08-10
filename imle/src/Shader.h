@@ -27,7 +27,7 @@
 
 
 - (id) initWithVS:(NSString *)vs FS:(NSString *)fs;
-- (void) bind;
-- (void) unbind;
+- (void) begin;
+- (void) end;
 
 @end

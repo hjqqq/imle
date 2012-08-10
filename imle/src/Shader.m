@@ -83,12 +83,12 @@
     return self;
 }
 
-- (void) bind
+- (void) begin
 {
     glUseProgram(m_handle);
 }
 
-- (void) unbind
+- (void) end
 {
     glUseProgram(0);
 }

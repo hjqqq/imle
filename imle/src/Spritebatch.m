@@ -56,14 +56,14 @@
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
     glBufferData(m_indexBuffer, m_spriteCount * 6 * sizeof(GLubyte), m_indices, GL_DYNAMIC_DRAW);
     
-    [m_shader bind];
+    [m_shader begin];
     
     glVertexAttribPointer(m_shader.PositionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), 0);
     glVertexAttribPointer(m_shader.ColorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid *)(sizeof(sizeof(float) * 3)));
     
     glDrawElements(GL_TRIANGLES, m_spriteCount * 6, GL_UNSIGNED_BYTE, 0);
     
-    [m_shader unbind];
+    [m_shader end];
 }
 
 - (void) drawSprite:(Sprite *)sprite
